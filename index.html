@@ -1,0 +1,40 @@
+<!doctype HTML>
+<html>
+<script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>
+  <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.5.5/aframe/build/aframe-ar.js"></script>
+  <script src="../js/aframe-mouse-cursor-component.min.js"></script>
+
+
+
+  <body style='margin : 0px; overflow: hidden;'>
+    <a-scene embedded arjs="debugUIEnabled: false;">
+      <a-assets>
+  <a-asset-item id="rover" src="../3d/model.gltf"></a-asset-item>
+</a-assets>
+<a-entity camera look-controls mouse-cursor>
+  	<a-marker preset="kanji">
+
+              <<a-box id="target" material="color: green"height="2" position="0.0 1.0 0.0"></a-box>
+              <<a-box id="target2" material="color: red" height="1"position="0.0 0.5 0.0" visible="false"></a-box>
+
+
+    	</a-marker>
+    </a-scene>
+
+    <script>
+    var targetEl = document.querySelector('#target');
+    targetEl.addEventListener('click', function() {
+      targetEl.setAttribute('visible', 'false');
+      targetEl2.setAttribute('visible', 'true');
+    });
+
+    var targetEl2 = document.querySelector('#target2');
+    targetEl2.addEventListener('click', function() {
+      targetEl.setAttribute('visible', 'true');
+      targetEl2.setAttribute('visible', 'false');
+    });
+
+    </script>
+
+  </body>
+</html>
