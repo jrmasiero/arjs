@@ -3,15 +3,91 @@
 <body style="margin : 0px; overflow: hidden;">
   
   <script>
+        
     AFRAME.registerComponent("teste",{
       init: function() {
         
-        let primeiro = 1;
-        let segundo = 5;  
-        let soma = primeiro + segundo;
-        document.getElementById("result").setAttribute('value', soma);
+        this.um = 0;
+        this.dois = 0;
+        this.tres = 0;
+        this.quatro = 0; 
+        this.cinco = 0;
+        this.seis = 0; 
+        this.sete = 0;
+        this.oito = 0; 
+        this.nove = 0;
+        this.mais = false;
+        this.menos = false;
+        this.igual = 0;
+               
+       
+        document.getElementById("result").setAttribute('value', this.igual);
+        
+      },
+      tick : function() {
+        if(document.querySelector("#one").object3D.visible == true){
+          this.um = 1;
+        } else {
+          this.um = 0;
+        }
+        if(document.querySelector("#two").object3D.visible == true){
+          this.dois = 2;
+        } else {
+          this.dois = 0;
+        }
+        if(document.querySelector("#three").object3D.visible == true){
+          this.tres = 3;
+        } else {
+          this.tres = 0;
+        }
+        if(document.querySelector("#four").object3D.visible == true){
+          this.quatro = 4;
+        } else {
+          this.quatro = 0;
+        }
+        if(document.querySelector("#five").object3D.visible == true){
+          this.cinco = 5;
+        } else {
+          this.cinco = 0;
+        }
+        if(document.querySelector("#six").object3D.visible == true){
+          this.seis = 6;
+        } else {
+          this.seis = 0;
+        }
+        if(document.querySelector("#seven").object3D.visible == true){
+          this.sete = 7;
+        } else {
+          this.sete = 0;
+        }
+        if(document.querySelector("#eight").object3D.visible == true){
+          this.oito = 8;
+        } else {
+          this.oito = 0;
+        }
+        if(document.querySelector("#nine").object3D.visible == true){
+          this.nove = 9;
+        } else {
+          this.nove = 0;
+        }
+        
+        if(document.querySelector("#sub").object3D.visible == true){
+          this.igual = this.um - this.dois - this.tres - this.quatro - this.cinco - this.seis - this.sete - this.oito - this.nove;
+          if(this.igual <= 0){
+            this.igual = this.igual * -1;
+          }
+        } else if(document.querySelector("#add").object3D.visible == true){
+          this.igual = this.um + this.dois + this.tres + this.quatro + this.cinco + this.seis + this.sete + this.oito + this.nove;
+        } else {
+          this.igual = 0;
+        }
+        
+        
+        
+        document.getElementById("result").setAttribute('value', this.igual);
         
       }
+    
     })
   window.onload = function() {
   }
@@ -19,24 +95,66 @@
       </script>
   
   
-  <a-scene embedded arjs="sourceType: webcam;">
+  <a-scene embedded arjs="sourceType: webcam; patternRatio: 0.9">
+    
+      <a-assets>
+    <a-asset-item id="orange" src="https://cdn.glitch.com/ba53cde7-7c33-4bfd-8211-72e807f129fb%2FOrange.gltf"></a-asset-item>
+  </a-assets>
+    
     <!-- handle marker with your own pattern -->
-    <a-marker type="pattern" url="https://cdn.glitch.com/ba53cde7-7c33-4bfd-8211-72e807f129fb%2Fqr1.patt">
-      <a-box position="0 0.5 0" material="color: red;"></a-box>
-      
+    <a-marker id="one" type="pattern" url="markers/pattern-1.patt">
+        <a-gltf-model src="#orange"></a-gltf-model>
     </a-marker>
 
     <!-- handle marker with hiro preset -->
-    <a-marker type="pattern" url="https://cdn.glitch.com/ba53cde7-7c33-4bfd-8211-72e807f129fb%2Fqr2.patt">
+    <a-marker id="two" type="pattern"  url="markers/pattern-2.patt">
       <a-box position="0 0.5 0" material="color: green;"></a-box>
-      
+    </a-marker>
+    
+    <a-marker id="three" type="pattern"  url="markers/pattern-3.patt">
+      <a-box position="0 0.5 0" material="color: blue;"></a-box>
+    </a-marker>
+    
+    <a-marker id="four" type="pattern"  url="markers/pattern-4.patt">
+      <a-box position="0 0.5 0" material="color: red;"></a-box>
+    </a-marker>
+    
+    <a-marker id="five" type="pattern"  url="markers/pattern-5.patt">
+      <a-box position="0 0.5 0" material="color: green;"></a-box>
+    </a-marker>
+    
+    <a-marker id="six" type="pattern"  url="markers/pattern-6.patt">
+      <a-box position="0 0.5 0" material="color: blue;"></a-box>
+    </a-marker>
+    
+    <a-marker id="seven" type="pattern"  url="markers/pattern-7.patt">
+      <a-box position="0 0.5 0" material="color: red;"></a-box>
+    </a-marker>
+    
+    <a-marker id="eight" type="pattern"  url="markers/pattern-8.patt">
+      <a-box position="0 0.5 0" material="color: green;"></a-box>
+    </a-marker>
+    
+    <a-marker id="nine" type="pattern"  url="markers/pattern-9.patt">
+      <a-box position="0 0.5 0" material="color: blue;"></a-box>
     </a-marker>
 
     <!-- handle barcode marker -->
-    <a-marker type="pattern" teste url="https://cdn.glitch.com/ba53cde7-7c33-4bfd-8211-72e807f129fb%2Fqr3.patt">
+    <a-marker id="add" type="pattern"  url="markers/pattern-mais.patt">
       <!--a-box position="0 0.5 0" material="color: blue;"></a-box-->
-      
-      <a-text id="result" rotation="-90.0 0.0 0.0"></a-text>
+      <a-text value="ma" rotation="-90.0 0.0 0.0"></a-text>
+    </a-marker>
+    
+    <!-- handle barcode marker -->
+    <a-marker id="sub" type="pattern"  url="markers/pattern-menos.patt">
+      <!--a-box position="0 0.5 0" material="color: blue;"></a-box-->
+      <a-text value="menos" rotation="-90.0 0.0 0.0"></a-text>
+    </a-marker>
+    
+    <!-- handle barcode marker -->
+    <a-marker id="equal" type="pattern" teste url="markers/pattern-igual.patt">
+      <!--a-box position="0 0.5 0" material="color: blue;"></a-box-->
+      <a-text id="result" scale="5 5 5" rotation="-90.0 0.0 0.0"></a-text>
     </a-marker>
     
     <!-- add a simple camera -->
